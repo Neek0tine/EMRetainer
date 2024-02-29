@@ -1,5 +1,5 @@
-
-<a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif" alt="tryhard" width="1280"/></a><br>
+<a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR2.gif#gh-dark-mode-only" alt="tryhard" width="1280"/></a><br>
+<a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif#gh-light-mode-only" alt="tryhard" width="1280"/></a><br>
 
 <h3 align="center">EMR Retainer</h3>
 
