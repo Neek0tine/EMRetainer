@@ -1,7 +1,5 @@
-<p align="center">
-  <a href="" rel="noopener">
-    <a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMMR.gif" alt="tryhard" width="1280"/></a><br>
-</p>
+
+<a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif" alt="tryhard" width="1280"/></a><br>
 
 <h3 align="center">EMR Retainer</h3>
 
@@ -16,7 +14,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> AI powered EMR Retainer tool for Airlangga Universitty Hospital
     <br> 
 </p>
 
