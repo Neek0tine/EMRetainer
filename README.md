@@ -1,25 +1,25 @@
-<p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
+<a href="https://github.com/Neek0tine/EMRetainer"><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRRdark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif">
+  <img alt="EMRR Banner" src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif">
+</picture></a><br>
 
-<h3 align="center">Project Title</h3>
+
+<h3 align="center">EMR Retainer</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> AI powered EMR Retainer tool for Airlangga Universitty Hospital
     <br> 
 </p>
-
+<!---
 ## 📝 Table of Contents
 
 - [About](#about)
@@ -107,8 +107,4 @@ Add additional notes about how to deploy this on a live system.
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+-->
