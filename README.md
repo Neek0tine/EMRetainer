@@ -10,8 +10,6 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/Neek0tine/EMRetainer/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://https://github.com/Neek0tine/EMRetainer/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -21,7 +19,7 @@
 <p align="center"> AI powered EMR Retainer tool for Airlangga Universitty Hospital
     <br> 
 </p>
-
+<!---
 ## 📝 Table of Contents
 
 - [About](#about)
@@ -109,8 +107,4 @@ Add additional notes about how to deploy this on a live system.
 
 See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
 
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+-->
