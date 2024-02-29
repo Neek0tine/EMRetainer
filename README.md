@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMMR.gif" alt="Procrastinate" width="1080"/></a><br>
+ <a href="https://github.com/Neek0tine/EMRetainer"><img src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMMR.gif" alt="tryhard" width="1080"/></a><br>
 </p>
 
 <h3 align="center">Project Title</h3>
