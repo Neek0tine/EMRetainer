@@ -1,7 +1,7 @@
 <a href="https://github.com/Neek0tine/EMRetainer"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRRdark.gif">
   <source media="(prefers-color-scheme: light)" srcset="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif">
-  <img alt="EMRR Banner" src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRRdark.gif">
+  <img alt="EMRR Banner" src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif">
 </picture></a><br>
 
 
