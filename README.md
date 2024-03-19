@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> AI powered EMR Retainer tool for Airlangga Universitty Hospital
+<p align="center"> AI powered EMR Retainer tool for Airlangga University Hospital
     <br> 
 </p>
 <!---
