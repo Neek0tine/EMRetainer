@@ -2,6 +2,8 @@
 dataset/
 .vscode/
 .emr/
+detectron2/
+TESTR
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
