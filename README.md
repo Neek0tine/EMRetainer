@@ -4,107 +4,54 @@
   <img alt="EMRR Banner" src="https://github.com/Neek0tine/Neek0tine/blob/main/stuff/EMRR.gif">
 </picture></a><br>
 
+# Medical Record OCR Project
 
-<h3 align="center">EMR Retainer</h3>
+## Overview
 
-<div align="center">
+This project focuses on the development of an Optical Character Recognition (OCR) system specifically designed for handwritten medical records from inpatients at Airlangga University Hospital (RSUA). The system aims to improve the digitization process of medical records by accurately recognizing and converting handwritten text into machine-readable format. The project involves data collection, preprocessing, OCR model fine-tuning, performance evaluation, and integration with a web-based interface.
 
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+## Methods
 
-</div>
+### Data Collection
+Data in the form of handwritten medical record documents were collected from RSUA through manual scanning using smartphones or scanner devices. The data collection process was approved by the Faculty of Advanced Technology and Multidiscipline (FTMM) Airlangga University and carried out by submitting a formal data request to RSUA.
 
----
+### Pre-Processing Data
+The collected data is divided into two sets: 80% for validation and 20% for testing. The pre-processing steps include:
 
-<p align="center"> AI powered EMR Retainer tool for Airlangga University Hospital
-    <br> 
-</p>
-<!---
-## 📝 Table of Contents
+1. **Validation of Labeling Data:**
+   - Labeling is done by reading handwriting on the image and adding the information in a separate document.
+   - Matching the labels with the image files based on file names or other identification variables.
+   - Ensuring the labeling format is consistent with the existing RSUA dataset if labels are already available.
 
-- [About](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+2. **Data Augmentation:**
+   - Performing image manipulations such as rotation, cropping, color changes, and brightness adjustments to increase the variety of data.
+   - Ensuring the model can adapt to various image conditions and is robust to imperfect scans.
 
-## 🧐 About <a name = "about"></a>
+3. **Region of Interest (ROI) Search:**
+   - Detecting handwriting areas where OCR will be applied using the Text Spotting Transformer (TESTR) model.
+   - Obtaining coordinates of the bounding box for the area of interest and integrating these into the labeled dataset.
 
-Write about 1-2 paragraphs describing the purpose of your project.
+4. **Manual Resizing, Normalization, and Correction:**
+   - Cleaning the final dataset to ensure high data quality.
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+### OCR Development
+The OCR model was fine-tuned using a labeled medical record dataset to enhance text recognition accuracy. The pretrained Transformer OCR model proposed by Li (2021), which combines image and text processing using the Transformer architecture, was used for this purpose.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+### Performance Evaluation
+Performance was evaluated by calculating the Character Error Rate (CER). A maximum CER of 15% was set as the acceptable limit. If the CER exceeded this threshold, data correction or model adjustments were implemented.
 
-### Prerequisites
+### Spell Checker Integration
+A spell checker was integrated to standardize drug names. It utilizes a combination of dictionary search, rule-based methods, and the Jaro-Winkler Similarity algorithm for correcting drug name spellings.
 
-What things you need to install the software and how to install them.
+### Integration Website
+The web interface was developed using the Flask framework as a Web Server Gateway Interface. It manages user data, result data, and web pages, forwarding the processed data to the Nginx server. The website allows users to:
+- Upload PDF documents.
+- Perform OCR conversions.
+- Standardize drug names.
+- Edit the converted text.
 
-```
-Give examples
-```
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
-
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-
-## ✍️ Authors <a name = "authors"></a>
-
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
--->
+## Acknowledgements
+- Airlangga University Hospital (RSUA) for providing 
