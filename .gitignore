@@ -3,7 +3,10 @@ dataset/
 .vscode/
 .emr/
 detectron2/
-TESTR
+TESTR/
+TEED/
+AdelaiDet/
+.mrr/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
