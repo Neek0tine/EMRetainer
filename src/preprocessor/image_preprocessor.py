@@ -11,6 +11,8 @@ __status__ = "Production"
 import cv2
 import numpy as np
 import os
+import glob
+import matplotlib.pyplot as plt
 
 class ImagePreprocessor:
     def __init__(self, size=(1080, 1920), beta_value=50):
@@ -113,7 +115,7 @@ class ImagePreprocessor:
         contours = sorted(contours, key=cv2.contourArea, reverse=True)
 
         for contour in contours:
-            approx = cv2.approxPolyDP(contour, 0.02 * cv2.arcLength(contour, True), True)
+            approx = cv2.approxPolyDP(contour, 2 * cv2.arcLength(contour, True), True)
             if len(approx) == 4:
                 x, y, w, h = cv2.boundingRect(approx)
                 square_side = min(w, h)
@@ -126,7 +128,7 @@ class ImagePreprocessor:
 
     def binarize_image(self, image_path, output_path):
         image = cv2.imread(image_path, 0)
-        binarized_image = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        binarized_image = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 3)
         cv2.imwrite(output_path, binarized_image)
 
     def greyscale_image(self, image_path, output_path):
@@ -156,26 +158,58 @@ class ImagePreprocessor:
         for f in files:
             os.remove(f)
 
+    def apply_bilateral_filter(self, image_path, output_path, d=25, sigmaColor=100, sigmaSpace=100):
+        # Read the input image
+        image = cv2.imread(image_path)
+
+        # Apply bilateral filter
+        filtered_image = cv2.bilateralFilter(image, d, sigmaColor, sigmaSpace)
+
+        # Save the result
+        cv2.imwrite(output_path, filtered_image)
+
+        # Display the original and filtered images
+        original = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        filtered = cv2.cvtColor(filtered_image, cv2.COLOR_BGR2RGB)
+
+        plt.figure(figsize=(12, 6))
+        plt.subplot(1, 2, 1)
+        plt.title('Original Image')
+        plt.imshow(original)
+        plt.axis('off')
+
+        plt.subplot(1, 2, 2)
+        plt.title('Bilateral Filtered Image')
+        plt.imshow(filtered)
+        plt.axis('off')
+
+        plt.show()
+
+
 # Usage Example
 if __name__ == "__main__":
     preprocessor = ImagePreprocessor()
-
-    inputimg = "src/preprocessor/data/10.jpg"
-    outputdir = "src/preprocessor/results/"
     
+    inputimg = "src/preprocessor/data/2.jpg"
+    outputdir = "src/preprocessor/results/"
+    preprocessor.delete_jpg_files(outputdir)
 
     # preprocessor.resize_image(inputimg, (outputdir + "output_resized" + ".jpg"))
-        # preprocessor.adjust_contrast(inputimg, (outputdir + "output_contrast" + ".jpg"))
-    # preprocessor.adjust_brightness(inputimg, (outputdir + "output_brightness" + ".jpg"))
-    # preprocessor.deskew_image(inputimg, (outputdir + "output_deskew" + ".jpg"))
-    # preprocessor.perspective_correction(inputimg, (outputdir + "output_perspective" + ".jpg"))
-    # preprocessor.crop_to_largest_square(inputimg, (outputdir + "output_autocrop" + ".jpg"))
-    # preprocessor.greyscale_image(inputimg, (outputdir + "output_greyscaled" + ".jpg"))
-    # preprocessor.adjust_contrast((outputdir + "output_brightness" + ".jpg"), (outputdir + "output_contrast" + ".jpg"))
-    preprocessor.histogram_equalization(inputimg, (outputdir + "he" + ".jpg"))
-    preprocessor.clahe(inputimg, (outputdir + "clahe" + ".jpg"))
-    preprocessor.unsharp_masking((outputdir + "clahe" + ".jpg"), (outputdir + "um" + ".jpg"))
-    preprocessor.adjust_brightness((outputdir + "um" + ".jpg"), (outputdir + "output_brightness" + ".jpg"))
-    preprocessor.binarize_image(inputimg, (outputdir + "output_binarized" + ".jpg"))
-    # preprocessor.denoise_image((outputdir + "output_binarized" + ".jpg"), (outputdir + "output_denoised" + ".jpg"))
+    # preprocessor.adjust_contrast(inputimg, (outputdir + "contrast" + ".jpg"))
+    
+    # preprocessor.deskew_image(inputimg, (outputdir + "deskewed" + ".jpg"))
+    # preprocessor.perspective_correction(inputimg, (outputdir + "perspective" + ".jpg"))
+    # preprocessor.crop_to_largest_square((outputdir + "output_resized" + ".jpg"), (outputdir + "autocrop" + ".jpg"))
+    # preprocessor.greyscale_image(inputimg, (outputdir + "greyscaled" + ".jpg"))
+    # preprocessor.denoise_image(inputimg, (outputdir + "output_denoised" + ".jpg"))
+
+    preprocessor.greyscale_image(inputimg, (outputdir + "greyscaled" + ".jpg"))
+    # preprocessor.clahe((outputdir + "greyscaled" + ".jpg"), (outputdir + "clahe" + ".jpg"))
+    # preprocessor.adjust_brightness((outputdir + "greyscaled" + ".jpg"), (outputdir + "brightness" + ".jpg"))
+    preprocessor.apply_bilateral_filter(image_path=(outputdir + "greyscaled" + ".jpg"), output_path=(outputdir + "bilateral" + ".jpg"))
+    
+    # preprocessor.unsharp_masking((outputdir + "clahe" + ".jpg"), (outputdir + "um" + ".jpg"))
+    preprocessor.binarize_image((outputdir + "bilateral" + ".jpg"), (outputdir + "binarized" + ".jpg"))
+
+    # preprocessor.histogram_equalization((outputdir + "um" + ".jpg"), (outputdir + "he" + ".jpg"))
     

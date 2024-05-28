@@ -7,6 +7,8 @@ TESTR/
 TEED/
 AdelaiDet/
 .mrr/
+deprecated/
+references/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
