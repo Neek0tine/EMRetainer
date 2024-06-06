@@ -16,7 +16,7 @@ model = VisionEncoderDecoderModel.from_pretrained("microsoft/trocr-large-handwri
 
 
 # Load image from local dataset
-image = Image.open("src/test.jpg").convert("RGB")
+image = Image.open("src/detectors/Hi-SAM/demo/final_rois/final_roi_1.png").convert("RGB")
 
 # Process the image and move pixel values to the GPU
 pixel_values = processor(image, return_tensors="pt").pixel_values.to(device)
