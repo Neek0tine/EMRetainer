@@ -9,6 +9,7 @@ AdelaiDet/
 .mrr/
 deprecated/
 references/
+src/somethingelse
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -37,6 +38,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+somethingelse/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
