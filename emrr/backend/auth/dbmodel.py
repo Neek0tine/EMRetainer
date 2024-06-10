@@ -1,11 +1,14 @@
-from app import db
+from backend.auth import db
+from flask_login import UserMixin
 
-class Staff(db.Model):
-    username = db.Column(db.String(50), primary_key=True)
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    password_salted = db.Column(db.String(255), nullable=False)
+class Staff(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)  # Add the id column
+    username = db.Column(db.String(50), unique=True, nullable=False)
+    full_name = db.Column(db.String(128), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password_salted = db.Column(db.String(60), nullable=False)
     profile_picture_url = db.Column(db.String(255))
-    activity_log_path = db.Column(db.Text)
+    activity_log_path = db.Column(db.String(255))
 
 class MedicalRecord(db.Model):
     medical_record_number = db.Column(db.Integer, primary_key=True)
@@ -13,6 +16,7 @@ class MedicalRecord(db.Model):
     date_of_birth = db.Column(db.Date)
     date_admitted = db.Column(db.Date)
     recent_specialization = db.Column(db.String(255))
+    health_history = db.Column(db.String(255))
     history_of_physical_checkups = db.Column(db.Text)
     supportive_checkups = db.Column(db.Text)
     recent_prescription = db.Column(db.Text)
@@ -25,3 +29,4 @@ class MedicalRecord(db.Model):
     allergy_reactions = db.Column(db.Text)
     condition_on_release = db.Column(db.Text)
     follow_up_notes = db.Column(db.Text)
+    image_path = db.Column(db.String(255))

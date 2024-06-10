@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
+            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#"><img src="assets/img/logo-header-rsua-kecil.png" width="184" height="32">
+                    <div class="sidebar-brand-icon rotate-n-15"></div>
+                    <div class="sidebar-brand-text mx-3"></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="far fa-clipboard"></i><span>Rekam Medis</span></a><a class="nav-link active" href="submit.html"><i class="far fa-plus-square"></i><span>Tambah RM</span></a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+                                <path d="M8.51428 20H4.51428C3.40971 20 2.51428 19.1046 2.51428 18V6C2.51428 4.89543 3.40971 4 4.51428 4H8.51428V6H4.51428V18H8.51428V20Z" fill="currentColor"></path>
+                                <path d="M13.8418 17.385L15.262 15.9768L11.3428 12.0242L20.4857 12.0242C21.038 12.0242 21.4857 11.5765 21.4857 11.0242C21.4857 10.4719 21.038 10.0242 20.4857 10.0242L11.3236 10.0242L15.304 6.0774L13.8958 4.6572L7.5049 10.9941L13.8418 17.385Z" fill="currentColor"></path>
+                            </svg><span>Keluar</span></a></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4" style="margin-top: 35px;">Tambah Rekam Medis</h3>
+                    <div class="row mb-3">
+                        <div class="col-lg-4" id="finalImage">
+                            <div class="card mb-3">
+                                <div class="card-body text-center shadow">
+                                    <div class="mb-3"><input type="file" name="rekam_medis" onchange="readURL(this);" value="1717409308.png" accept=".png"></div><img class="img-thumbnail mb-3 mt-4" id="blah" src="assets/img/records/placeholder.png" width="405" height="586 ">
+                                    <div class="mb-3"></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" style="background: var(--bs-green);" onclick="showFinalImage()">Deteksi Tulisan</button></div>
+                                </div>
+                                <div class="card-body text-center shadow" id="loading" style="display:none">
+                                    <div class="mb-3"></div><img class="img-thumbnail mb-3 mt-4" id="blah-1" src="assets/img/output.gif" width="256" height="256">
+                                    <div class="mb-3"></div>
+                                    <div class="mb-3"></div>
+                                </div>
+                                <div class="card-body text-center shadow" id="finalImageDiv" style="display:none"><img class="img-thumbnail mb-3 mt-4" src="assets/img/records/region_of_interests/form2_final.png" width="579" height="837">
+                                    <div class="mb-3"></div>
+                                    <div class="mb-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row mb-3 d-none">
+                                <div class="col">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 fw-bold">Data Digital</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="nama_pasien"><strong>Nama Pasien</strong></label><input class="form-control" type="text" id="username" placeholder="Jon Doe" name="nama_pasien"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="nama_periusahaan"><strong>Nama Perusahaan</strong></label><input class="form-control" type="email" id="email" placeholder="-" name="nama_periusahaan"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="ttl_umur"><strong>Tgl. Lahir / Umur</strong></label><input class="form-control" type="text" id="username-2" placeholder="DD-MM-YYYY / UMUR" name="ttl_umur"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="nama_peserta"><strong>Nama Peserta</strong></label><input class="form-control" type="email" id="email-2" placeholder="-" name="nama_peserta"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="no_rm"><strong>No. Rekam Medis</strong></label><input class="form-control" type="text" id="first_name" placeholder="0000000000" name="no_rm"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="no_polis"><strong>Nomor Polis</strong></label><input class="form-control" type="text" id="last_name" placeholder="-" name="no_polis"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="tanggal_masuk"><strong>Tanggal masuk</strong></label><input class="form-control" type="text" id="first_name-5" placeholder="DD-MM-YYYY" name="tanggal_masuk"></div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="unit_rawat_terakhir"><strong>Unit Rawat Terakhir</strong></label><input class="form-control" type="text" id="last_name-1" placeholder="Poliklinik" name="unit_rawat_terakhir"></div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <hr style="opacity: 1;">
+                                        </div>
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="riwayat_penyakit"><strong>Riwayat Penyakit</strong></label><input class="form-control" type="text" id="username-1" placeholder="-" name="riwayat_penyakit"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="pemeriksaan_fisik"><strong>Pemeriksaan Fisik</strong></label><input class="form-control" type="text" id="first_name-1" placeholder="-" name="pemeriksaan_fisik"></div>
+                                                        <div class="mb-3"><label class="form-label" for="pemeriksaan_penunjang"><strong>Pemeriksaan Penunjang</strong></label><input class="form-control" type="text" id="first_name-3" placeholder="-" name="pemeriksaan_penunjang"></div>
+                                                        <div class="mb-3"><label class="form-label" for="pengobatan"><strong>Pengobatan</strong></label><input class="form-control" type="text" id="first_name-4" placeholder="-" name="pengobatan"></div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="diagnosis_awal"><strong>Diagnosis Awal</strong></label><input class="form-control" type="text" id="first_name-2" placeholder="-" name="diagnosis_awal"></div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="kode_icd_10"><strong>Kode ICD 10</strong></label><input class="form-control" type="text" id="last_name-2" placeholder="-" name="kode_icd_10"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="first_name"><strong>Diagnosis Utama</strong></label><input class="form-control" type="text" id="first_name-11" placeholder="-" name="diagnosis_utama"></div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="kode_icd_10_2"><strong>Kode ICD 10</strong></label><input class="form-control" type="text" id="last_name-8" placeholder="-" name="kode_icd_10_2"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="first_name"><strong>Diagnosis Lain / Komplikasi</strong></label><input class="form-control" type="text" id="first_name-10" placeholder="-" name="diagnosis_lain" value="-"></div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="last_name"><strong>Kode ICD 10</strong></label></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="tindakan"><strong>Tindakan / Prosedur</strong></label><input class="form-control" type="text" id="first_name-12" placeholder="-" name="tindakan"></div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="kode_icd_9_cm"><strong>Kode ICD 9 CM</strong></label><input class="form-control" type="text" id="last_name-3" placeholder="-" name="kode_icd_9_cm"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="alergi"><strong>Alergi (reaksi obat)</strong></label><input class="form-control" type="text" id="first_name-8" placeholder="-" name="alergi" value="-"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="keadaan_pulang"><strong>Keadaan Pulang/Keluar</strong></label><input class="form-control" type="text" id="first_name-7" placeholder="-" name="keadaan_pulang" value="-"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="mb-3"><label class="form-label" for="anjuran"><strong>Anjuran / Kontrol Ulang</strong></label><input class="form-control" type="text" id="first_name-6" placeholder="-" name="anjuran" value="-"></div>
+                                                                <hr style="opacity: 1;">
+                                                                <div class="row">
+                                                                    <div class="col">
+                                                                        <div class="mb-3"><label class="form-label" for="tanggal_ttd"><strong>Tanggal TTD</strong></label><input class="form-control" type="text" id="first_name-9" placeholder="-" name="tanggal_ttd"></div>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <div class="mb-3"><label class="form-label" for="dokter_penanggungjawab"><strong>Dokter Penanggungjawab</strong></label><input class="form-control" type="text" id="last_name-6" placeholder="-" name="dokter_penanggungjawab"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit">Save Settings</button></div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-5"></div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2024</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/login.js"></script>
+    <script src="assets/js/scanner.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
