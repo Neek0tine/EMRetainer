@@ -1,6 +1,5 @@
 from backend.auth import app, db
 # from backend.auth import defaultHandler
-from backend.auth.func import create_dummy_staff
 import logging
 import os
 

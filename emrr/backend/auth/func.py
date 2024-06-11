@@ -1,10 +1,11 @@
 from backend.auth import db, bcrypt
 from backend.auth.dbmodel import Staff, MedicalRecord
+from sqlalchemy import create_engine
 import pandas as pd
 import numpy as np
+from sqlalchemy.exc import IntegrityError
 
-
-def create_dummy_staff():
+def create_dummy_all():
     # Dummy data
     dummy_staff = [
         {'username': 'nicholasjuan', 'full_name': 'dr. Nicholas Juan K. P., Sp.N (K)., FINR., FINA','email': 'nicholas.juan.kalvin-2020@ftmm.unair.ac.id', 'password': 'kelompok1', 'profile_picture_url': 'https://2.gravatar.com/avatar/cfe94dac9ebebba8994201fa9d2886a77b147ab1a0c08d8afd7e314d82d37f7a?size=256', 'activity_log_path': '/logs/john_doe.log'},
@@ -24,37 +25,46 @@ def create_dummy_staff():
             activity_log_path=staff['activity_log_path']
         )
         db.session.add(new_staff)
+    try:
+        db.session.commit()
+    except IntegrityError:
+        pass
+    print('Staff Dummy added')
 
-
-    # dummy_records = pd.read_excel("emrr/records_dummy.xlsx")
+    dummy_records = pd.read_csv("dummy_records_full.csv", index_col=False)
+    
+    engine = create_engine('mysql+pymysql://emretainer:6yXgr68t3n.vB3gN@localhost/EMRetainer', echo=False)
+    dummy_records.to_sql(name='MedicalRecord', con=engine)
+    print('Record Dummy added')
 
     # for records in dummy_records:
-    #     hashed_password = bcrypt.generate_password_hash(staff['password']).decode('utf-8')
+    #     print(records)
     #     new_record = MedicalRecord(
-    #         medical_record_number = db.Column(db.Integer, primary_key=True)
-    #         patient_name = db.Column(db.String(255), nullable=False)
-    #         date_of_birth = db.Column(db.Date)
-    #         date_admitted = db.Column(db.Date)
-    #         recent_specialization = db.Column(db.String(255))
-    #         history_of_physical_checkups = db.Column(db.Text)
-    #         supportive_checkups = db.Column(db.Text)
-    #         recent_prescription = db.Column(db.Text)
-    #         early_diagnosis = db.Column(db.Text)
-    #         early_diagnosis_icd10_code = db.Column(db.String(10))
-    #         main_diagnosis = db.Column(db.Text)
-    #         main_diagnosis_icd10_code = db.Column(db.String(10))
-    #         actions_taken = db.Column(db.Text)
-    #         actions_icd9cm_code = db.Column(db.String(10))
-    #         allergy_reactions = db.Column(db.Text)
-    #         condition_on_release = db.Column(db.Text)
-    #         follow_up_notes = db.Column(db.Text)
-    #         image_path = db.Column(db.String(255))
+    #         medical_record_number = dummy_records['medical_record_number'],
+    #         patient_name = dummy_records['patient_name'],
+    #         date_of_birth = dummy_records['date_of_birth'],
+    #         date_admitted = dummy_records['date_admitted'],
+    #         recent_specialization = dummy_records['recent_specialization'],
+    #         health_history = dummy_records['health_history'],
+    #         supportive_checkups = dummy_records['supportive_checkups'],
+    #         recent_prescription = dummy_records['recent_prescription'],
+    #         early_diagnosis = dummy_records['early_diagnosis'],
+    #         early_diagnosis_icd10_code = dummy_records['early_diagnosis_icd10_code'],
+    #         main_diagnosis = dummy_records['main_diagnosis'],
+    #         main_diagnosis_icd10_code = dummy_records['main_diagnosis_icd10_code'],
+    #         actions_taken = dummy_records['actions_taken'],
+    #         actions_icd9cm_code = dummy_records['actions_icd9cm_code'],
+    #         allergy_reactions = dummy_records['allergy_reactions'],
+    #         condition_on_release = dummy_records['condition_on_release'],
+    #         follow_up_notes = dummy_records['follow_up_notes'],
+    #         image_path = dummy_records['image_path']
     #         )
         
-        db.session.add(new_staff)
+    #     db.session.add(new_record)
+    # print('Records Dummy added')
 
-    db.session.commit()
-    print('Committed')
+    # db.session.commit()
+    # print('DB Committed.')
 
 
 def remove_dummy_staff():

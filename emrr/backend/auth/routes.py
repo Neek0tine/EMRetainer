@@ -53,11 +53,11 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-from backend.auth.func import create_dummy_staff, remove_dummy_staff, reset_database
+from backend.auth.func import create_dummy_all, remove_dummy_staff, reset_database
 
 @app.route('/create_dummy')
 def create_dummy():
-    create_dummy_staff()
+    create_dummy_all()
     return 'Dummy staff created'
 
 @app.route('/remove_dummy')
@@ -68,4 +68,14 @@ def remove_dummy():
 @app.route('/hard_reset')
 def hard_reset():
     reset_database()
+    return 'Everything resetted'
+
+@app.route('/rmrf')
+def delete_db():
+    db.drop_all()
     return 'Everything removed'
+
+@app.route('/mkdir')
+def create_db():
+    db.create_all()
+    return 'Created from db schema.'

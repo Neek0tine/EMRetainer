@@ -17,7 +17,7 @@ class MedicalRecord(db.Model):
     date_admitted = db.Column(db.Date)
     recent_specialization = db.Column(db.String(255))
     health_history = db.Column(db.String(255))
-    history_of_physical_checkups = db.Column(db.Text)
+    health_history = db.Column(db.Text)
     supportive_checkups = db.Column(db.Text)
     recent_prescription = db.Column(db.Text)
     early_diagnosis = db.Column(db.Text)
