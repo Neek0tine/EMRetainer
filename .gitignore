@@ -39,6 +39,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 somethingelse/
+medical_record.csv
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
