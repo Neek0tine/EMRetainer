@@ -42,20 +42,21 @@
                                 <!-- <div class="card-body text-center shadow">
                                     <div class="mb-3"><input type="file" name="rekam_medis" onchange="readURL(this);" value="1717409308.png" accept=".png"></div><img class="img-thumbnail mb-3 mt-4" id="blah" src="assets/img/records/placeholder.png" width="405" height="586 ">
                                     <div class="mb-3"></div>
-                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="button" style="background: var(--bs-green);" onclick="showFinalImage()">Deteksi Tulisan</button></div>
+                                    <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-green);" onclick="showFinalImage()">Deteksi Tulisan</button></div>
                                 </div> -->
-                                <form action="{{ url_for('scanner') }}" method="post" enctype="multipart/form-data">
+
+                                <form method="post" action="{{ url_for('process_image') }}" enctype="multipart/form-data">
                                     <div class="card-body text-center shadow">
                                         <div class="mb-3">
                                             <input type="file" name="rekam_medis" onchange="readURL(this);" accept=".png">
+                                            <img class="img-thumbnail mb-3 mt-4" id="blah" src="assets/img/records/placeholder.png" width="405" height="586">
                                         </div>
-                                        <img class="img-thumbnail mb-3 mt-4" id="blah" src="{{ url_for('static', filename='img/records/placeholder.png') }}" width="405" height="586">
-                                        <div class="mb-3"></div>
                                         <div class="mb-3">
-                                            <button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-green);">Upload Image</button>
+                                            <button class="btn btn-primary btn-sm" type="submit" style="background: var(--bs-green);">Deteksi Tulisan</button>
                                         </div>
                                     </div>
                                 </form>
+                                
                                 <div class="card-body text-center shadow" id="loading" style="display:none">
                                     <div class="mb-3"></div><img class="img-thumbnail mb-3 mt-4" id="blah-1" src="assets/img/output.gif" width="256" height="256">
                                     <div class="mb-3"></div>
