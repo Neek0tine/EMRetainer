@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Rekam Medis - Rumah Sakit Universitas Airlangga</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -18,7 +19,7 @@
                     <div class="sidebar-brand-text mx-3"></div>
                 </a>
                 <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
+                <ul class="d-none d-lg-block navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="{{ url_for('dashboard') }}"><i class="far fa-clipboard"></i><span>Rekam Medis</span></a><a class="nav-link" href="{{ url_for('scanner') }}"><i class="far fa-plus-square"></i><span>Tambah RM</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
@@ -36,7 +37,10 @@
                 <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
                     <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop-5" type="button"><i class="fas fa-bars"></i></button>
                         <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Cari rekam medis .."><button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button></div>
+                            <div class="input-group">
+                                <input class="bg-light form-control border-0 small" type="text" placeholder="Cari rekam medis .." name="search_query">
+                                <button class="btn btn-primary py-0" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
                         </form>
                         <ul class="navbar-nav flex-nowrap ms-auto">
                             <div class="d-none d-sm-block topbar-divider"></div>
@@ -62,355 +66,61 @@
                         <h3 class="text-dark mb-0">Database Rekam Medis</h3>
                     </div>
                     <div class="row">
+                        {% for record in records %}
                         <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
                             <div class="card shadow border-start-primary py-2">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1717409307.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
+                                <div class="row"></div>
+                                    <a style='text-decoration: none;' href = "{{url_for('detail', record_number=record.medical_record_number)}}" class="row align-items-center no-gutters">
+                                        <div class="col-auto">
+                                            <img src="{{ record.image_path }}" alt="Record Image" width="127px" height="181px">
+                                        </div>
                                         <div class="col me-2">
                                             <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
                                             <div></div>
                                             <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">13567825</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. Hamba T.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Gigi</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Karies Gigi</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">12-05-24</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0">
+                                                <span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 text-dark" style="margin-right: 13px;">{{ record.medical_record_number }}</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 text-dark" style="margin-right: 13px;">{{ record.patient_name }}</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 text-dark" style="margin-right: 13px;">{{ record.recent_specialization }}</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 text-dark" style="margin-right: 13px;"><em>{{ record.early_diagnosis }}</em></span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span>
+                                            </div>
+                                            <div class="fs-6 text-primary fw-bold h5 mb-0">
+                                                <span class="fs-6 text-dark" style="margin-right: 13px;">{{ record.date_admitted.strftime('%d-%m-%y') }}</span>
+                                            </div>
                                             <div class="text-dark fw-bold h5 mb-0"></div>
                                             <div class="text-dark fw-bold h5 mb-0"></div>
                                             <div class="text-dark fw-bold h5 mb-0"></div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1717409308.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">1165210073</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. M. Aulia H.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Jiwa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Depressive Episodes</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">04-05-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1717502509.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">1136288329</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. A. M. Idris</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Jiwa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Schizophrenia</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">21-06-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1717601104.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">1136288329</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. A. M. Idris</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Jiwa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Schizophrenia</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">21-06-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1717602531.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">1165210076</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. N. Juan K. P.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Jiwa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Attention Disorder</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">02-02-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1718710201.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">1167240102</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. Alvin B. R.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Jiwa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Speech Disorder</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">05-06-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1718720402.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">15125783</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Ibu Melodi A. P.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Saraf</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Alzheimer</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">05-03-24</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1718862531.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">15536321</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Bpk. Bakti N.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Saraf</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Epilepsi</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">07-04-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1718872751.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">15135214</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Ibu Risa K. N.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Saraf</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>C. Palsy</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">03-02-20</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1718922112.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">15125783</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Ibu Chandra W.</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Saraf</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Stroke</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">07-05-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4" style="width: auto;">
-                            <div class="card shadow border-start-primary py-2">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col"><span class="font-monospace text-lowercase fs-6 fw-light" style="backdrop-filter: opacity(1);">1718931231.png</span></div>
-                                    </div>
-                                    <div></div>
-                                    <div class="row align-items-center no-gutters">
-                                        <div class="col-auto"><img src="assets/img/records/thumbnails/form1_thumb.png"></div>
-                                        <div class="col me-2">
-                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"></div>
-                                            <div></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"><span class="fs-6 fw-normal text-primary" style="margin-right: 13px;">No. RM</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">15125783</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Nama</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Ibu H. Mutiara</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Poli</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">Saraf</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Diagnosa</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;"><em>Sclerosis</em></span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 fw-light text-primary" style="margin-right: 13px;">Tgl. Masuk</span></div>
-                                            <div class="fs-6 text-primary fw-bold h5 mb-0"><span class="fs-6 text-dark" style="margin-right: 13px;">08-04-23</span></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                            <div class="text-dark fw-bold h5 mb-0"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2024</span></div>
-                </div>
-            </footer>
         </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     </div>
     <script src="assets/js/jquery.min.js"></script>

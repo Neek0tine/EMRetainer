@@ -62,7 +62,7 @@ class ImagePreprocessor:
 if __name__ == "__main__":
     preprocessor = ImagePreprocessor()
     print(os.getcwd())
-    inputimg = "src/preprocessor/data/form1.png"
+    inputimg = "emrr/model/preprocessor/data/form1/diagnosis_utama_icd_10.png"
     outputdir = "src/preprocessor/results/"
     # preprocessor.delete_jpg_files(outputdir)
     preprocessor.greyscale_image(inputimg, (outputdir + "greyscaled" + ".png"))

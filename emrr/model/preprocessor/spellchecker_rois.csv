@@ -1,0 +1,6 @@
+region_name, x1, y1, x2, y2
+"diagnosis_awal_icd_10", 325, 430, 493, 470
+"diagnosis_utama_icd_10", 325, 484, 490, 512
+"diagnosis_lain_icd_10", 324, 524, 490, 556
+"tindakan", 10, 560, 320, 600
+"tindakan_icd_9_cm", 325, 570, 495, 600

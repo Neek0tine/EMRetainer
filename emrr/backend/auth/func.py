@@ -3,6 +3,7 @@ from backend.auth.dbmodel import Staff, MedicalRecord
 from sqlalchemy import create_engine
 import pandas as pd
 import numpy as np
+from datetime import datetime
 from sqlalchemy.exc import IntegrityError
 
 def create_dummy_all():
@@ -32,40 +33,12 @@ def create_dummy_all():
     print('Staff Dummy added')
 
     dummy_records = pd.read_csv("dummy_records_full.csv", index_col=False)
+    # dummy_records['date_of_birth'] = dummy_records['date_of_birth'].astype('datetime64[ns]')
+    # dummy_records['date_admitted'] = dummy_records['date_admitted'].astype('datetime64[ns]')
     
     engine = create_engine('mysql+pymysql://emretainer:6yXgr68t3n.vB3gN@localhost/EMRetainer', echo=False)
-    dummy_records.to_sql(name='MedicalRecord', con=engine)
+    dummy_records.to_sql(name='medical_record', con=engine, if_exists='append', index=False)
     print('Record Dummy added')
-
-    # for records in dummy_records:
-    #     print(records)
-    #     new_record = MedicalRecord(
-    #         medical_record_number = dummy_records['medical_record_number'],
-    #         patient_name = dummy_records['patient_name'],
-    #         date_of_birth = dummy_records['date_of_birth'],
-    #         date_admitted = dummy_records['date_admitted'],
-    #         recent_specialization = dummy_records['recent_specialization'],
-    #         health_history = dummy_records['health_history'],
-    #         supportive_checkups = dummy_records['supportive_checkups'],
-    #         recent_prescription = dummy_records['recent_prescription'],
-    #         early_diagnosis = dummy_records['early_diagnosis'],
-    #         early_diagnosis_icd10_code = dummy_records['early_diagnosis_icd10_code'],
-    #         main_diagnosis = dummy_records['main_diagnosis'],
-    #         main_diagnosis_icd10_code = dummy_records['main_diagnosis_icd10_code'],
-    #         actions_taken = dummy_records['actions_taken'],
-    #         actions_icd9cm_code = dummy_records['actions_icd9cm_code'],
-    #         allergy_reactions = dummy_records['allergy_reactions'],
-    #         condition_on_release = dummy_records['condition_on_release'],
-    #         follow_up_notes = dummy_records['follow_up_notes'],
-    #         image_path = dummy_records['image_path']
-    #         )
-        
-    #     db.session.add(new_record)
-    # print('Records Dummy added')
-
-    # db.session.commit()
-    # print('DB Committed.')
-
 
 def remove_dummy_staff():
     dummy_usernames = ['jon_doe', 'nadine_chandrawinata', 'andi_suhendra', 'ayu_wardani', 'budi_santoso']
